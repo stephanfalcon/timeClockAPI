@@ -7,7 +7,9 @@ const cors = require("cors")
 
 
 mongoose.connect(`mongodb+srv://stephan:fzymx2525@node-api-hk3o8.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true , useUnifiedTopology: true})
-app.use(cors())
+app.use(cors({
+    origin:"https://timeclock03.herokuapp.com/"
+}))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 

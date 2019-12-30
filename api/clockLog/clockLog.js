@@ -39,7 +39,7 @@ router.post("/",(req,res)=>{
     })
 })
 
-router.delete("/",(req,res)=>{
+router.delete("/:Id",(req,res)=>{
     ClockLog.deleteOne({_id:req.params.Id})
     .exec()
     .then(

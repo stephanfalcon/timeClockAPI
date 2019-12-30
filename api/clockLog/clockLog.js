@@ -37,7 +37,21 @@ router.post("/",(req,res)=>{
             {error:err}
         )
     })
+})
 
+router.delete("/",(req,res)=>{
+    ClockLog.deleteOne({_id:req.params.Id})
+    .exec()
+    .then(
+        res.status(200).json({
+            message:`log ${req.params.orderId} has been deleted`
+        })
+    )
+    .catch(err =>{
+        res.status(500).json({
+            error:error
+        })
+    })
 })
 
 module.exports = router 

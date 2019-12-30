@@ -18,13 +18,12 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/",(req,res)=>{
-    
     const clockLog = new ClockLog({
         _id: new mongoose.Types.ObjectId(),
-        clockInTime:req.body.shift.clockInTime,
-        clockOutTime:req.body.shift.clockOutTime,
-        timePassed:req.body.shift.timePassed,
-        note:req.body.shift.note
+        clockInTime:req.body.clockInTime,
+        clockOutTime:req.body.clockOutTime,
+        timePassed:req.body.timePassed,
+        note:req.body.note
     })
     clockLog.save()
     .then(result=>{
@@ -34,7 +33,7 @@ router.post("/",(req,res)=>{
     })
     .catch(err=>{
         console.log(err)
-        res.status(500).json(
+        res.status(500).send(
             {error:err}
         )
     })

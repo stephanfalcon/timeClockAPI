@@ -21,10 +21,10 @@ router.post("/",(req,res)=>{
     
     const clockLog = new ClockLog({
         _id: new mongoose.Types.ObjectId(),
-        clockInTime:"00:00:00",
-        clockOutTime:"00:00:00",
-        timePassed:"00:00:00",
-        note:"this is only a test"
+        clockInTime:req.body.shift.clockInTime,
+        clockOutTime:req.body.shift.clockOutTime,
+        timePassed:req.body.shift.timePassed,
+        note:req.body.shift.note
     })
     clockLog.save()
     .then(result=>{

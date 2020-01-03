@@ -23,6 +23,7 @@ router.post("/",(req,res)=>{
         clockInTime:req.body.clockInTime,
         clockOutTime:req.body.clockOutTime,
         timePassed:req.body.timePassed,
+        date:req.body.date,
         note:req.body.note
     })
     clockLog.save()

@@ -14,6 +14,10 @@ const clockLogSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    date:{
+        type:String,
+        required:true
+    },
     note:String
 
 })

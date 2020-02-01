@@ -50,7 +50,21 @@ router.delete("/:Id",(req,res)=>{
     )
     .catch(err =>{
         res.status(500).json({
-            error:error
+            error:err
+        })
+    })
+})
+
+router.put('/:Id',()=>{
+    ClockLog.updateOne({_id:req.params.Id},{note:req.body.note})
+    .exec()
+    .then(
+        res.status(200).json({
+            message:`log ${req.params.orderId} note has been changed`
+        })
+    ).catch(err=>{
+        res.status(500).json({
+            error:err
         })
     })
 })

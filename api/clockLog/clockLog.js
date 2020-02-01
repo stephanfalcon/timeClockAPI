@@ -55,7 +55,7 @@ router.delete("/:Id",(req,res)=>{
     })
 })
 
-router.put('/:Id',()=>{
+router.put('/:Id',(req,res)=>{
     ClockLog.updateOne({_id:req.params.Id},{note:req.body.note})
     .exec()
     .then(

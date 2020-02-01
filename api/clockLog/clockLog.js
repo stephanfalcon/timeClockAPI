@@ -45,7 +45,7 @@ router.delete("/:Id",(req,res)=>{
     .exec()
     .then(
         res.status(200).json({
-            message:`log ${req.params.orderId} has been deleted`
+            message:`log ${req.params.Id} has been deleted`
         })
     )
     .catch(err =>{
@@ -60,7 +60,7 @@ router.put('/:Id',(req,res)=>{
     .exec()
     .then(
         res.status(200).json({
-            message:`log ${req.params.orderId} note has been changed`
+            message:`log ${req.params.Id} note has been changed`
         })
     ).catch(err=>{
         res.status(500).json({

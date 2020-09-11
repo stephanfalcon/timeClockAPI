@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const clockLogRouter = require("./api/clockLog/clockLog")
+const user = require("./api/clockLog/user")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const cors = require("cors")
@@ -14,6 +15,7 @@ app.use(bodyParser.json())
 const port = process.env.PORT || 3001
 
 app.use("/clocklog",clockLogRouter)
+app.use("/user", user)
 
 
 app.use((req,res,next)=>{

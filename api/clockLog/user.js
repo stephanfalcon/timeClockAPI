@@ -28,7 +28,7 @@ router.get('/',(req,res)=>{
     .exec()
     .then(docs=>{
         console.log(docs)
-        res.status(200).json({docs})
+        res.status(200).json({docs:docs})
     })
     .catch(err=>{
         res.status(500).json({
@@ -38,12 +38,14 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/login',(req,res)=>{
-    
+    console.log("this the req.body : " + req.body)
     User.findOne({username:req.body.username})
     .then((result)=>{
         res.json(result)
     })
-
+    .catch((err)=>{
+        res.json(err)
+    })
 });
 
 router.post('/register',(req,res)=>{
@@ -60,12 +62,12 @@ router.post('/register',(req,res)=>{
     user.save()
     .then(result=>{
         console.log(result)
-        res.status(201).json(result)
+        res.json({result})
         console.log("poop")
     })
     .catch(err=>{
         console.log(err)
-        res.status(500).send(
+        res.json(
             {error:err}
         )
     })

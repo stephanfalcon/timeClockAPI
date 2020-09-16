@@ -7,21 +7,15 @@ const LocalStrategy = require("passport-local")
 const User = require("../../models/user")
 
 passport.use(new LocalStrategy(
-    // function(username, password, done) {
-    //     User.findOne({ username: username }, function (err, user) {
-    //     if (err) { return done(err); }
-    //     if (!user) { return done(null, false); }
-    //     if (!user.verifyPassword(password)) { return done(null, false); }
-    //     return done(null, user);
-    //     });
-    // }
-    (username,password,done)=>{
-        if(username){
-            return done(null,user)
-        }
+    function(username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            if (!user.verifyPassword(password)) { return done(null, false); }
+        return done(null, user);
+        });
     }
 ));
-
 
 router.get('/',(req,res)=>{
     User.find()
@@ -39,7 +33,11 @@ router.get('/',(req,res)=>{
 
 router.post('/login',(req,res)=>{
     console.log("this the req.body : " + req.body)
+    passport.authenticate("local",{
+    s
+    })
     User.findOne({username:req.body.username})
+    .exec()
     .then((result)=>{
         res.json(result)
     })
@@ -73,8 +71,12 @@ router.post('/register',(req,res)=>{
     })
 })
 
-router.delete('/',(req,res)=>{
-    
+router.post('/delete',(req,res)=>{
+    User.deleteOne({_id:req.body._id})
+    .exec()
+    .then(
+        res.json({message:`deleted user id: ${req.body._id}`})
+    )
 })
 
 module.exports = router

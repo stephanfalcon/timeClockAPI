@@ -5,10 +5,12 @@ const user = require("./api/clockLog/user")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+const morgan = require("morgan")
 
 
 mongoose.connect(`mongodb+srv://stephan:fzymx2525@node-api-hk3o8.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true , useUnifiedTopology: true})
 app.use(cors())
+app.use(morgan())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 

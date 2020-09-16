@@ -3,6 +3,20 @@ const ClockLog = require("../../models/clockLog")
 const mongoose = require("mongoose")
 const router = express.Router()
 
+router.get("/:user",(req,res)=>{
+    ClockLog.find({userId:req.params.user})
+    .exec()
+    .then(docs=>{
+        console.log(docs)
+        res.status(200).json({docs})
+    })
+    .catch(err=>{
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
 router.get("/",(req,res)=>{
     ClockLog.find()
     .exec()
@@ -24,6 +38,7 @@ router.post("/",(req,res)=>{
         clockOutTime:req.body.clockOutTime,
         timePassed:req.body.timePassed,
         date:req.body.date,
+        userId:req.body.userId,
         note:req.body.note
     })
     clockLog.save()

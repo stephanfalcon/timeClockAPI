@@ -18,6 +18,10 @@ const clockLogSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    userId:{
+        type:String,
+        required:true
+    },
     note:String
 
 })
